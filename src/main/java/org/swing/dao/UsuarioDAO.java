@@ -4,6 +4,7 @@ import org.swing.model.Usuario;
 import org.swing.model.Endereco;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class UsuarioDAO extends BaseDAO {
 
@@ -74,6 +75,28 @@ public class UsuarioDAO extends BaseDAO {
                 usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(rs.getString("tipo_usuario")));
                 usuario.setSenha(rs.getString("senha"));
                 return usuario;
+            }
+        }
+        return null;
+    }
+    public Usuario findByCpf(String cpf) throws SQLException {
+        String sql = "SELECT * FROM usuario WHERE cpf = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                int idUsuario = rs.getInt("id_usuario");
+                String nome = rs.getString("nome");
+                String senhaBanco = rs.getString("senha"); // Extraia a senha aqui
+                String telefone = rs.getString("telefone");
+                LocalDate dataNascimento = rs.getDate("data_nascimento").toLocalDate();
+
+                return new Usuario(idUsuario, nome, cpf, dataNascimento, telefone, null) {
+                    @Override
+                    public boolean login(String senha) {
+                        return senha.equals(senhaBanco); // Use a senha extraída
+                    }
+                };
             }
         }
         return null;

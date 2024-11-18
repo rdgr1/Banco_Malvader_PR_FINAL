@@ -53,7 +53,13 @@ public class UsuarioController implements IController<Usuario> {
             return null;
         }
     }
-
+    public Usuario buscarPorCpf(String cpf) {
+        try {
+            return usuarioDAO.findByCpf(cpf);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar usuário por CPF: " + e.getMessage(), e);
+        }
+    }
     @Override
     public List<Usuario> listarTodos() {
         // Implementação opcional, se for necessário

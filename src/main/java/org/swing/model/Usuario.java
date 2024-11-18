@@ -4,6 +4,7 @@ package org.swing.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 @Setter
@@ -29,7 +30,7 @@ public abstract class Usuario {
         this.endereco = endereco;
         this.senha = senha;
     }
-    public abstract boolean login(String senha);
+    public abstract boolean login(String senha) throws SQLException;
     public void logout(){
         System.out.println("Usuário " + nome + " desconectado.");
     }

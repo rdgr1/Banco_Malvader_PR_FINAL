@@ -1,0 +1,5 @@
+INSERT INTO endereco (cep, local, numero_casa, bairro, cidade, estado)
+VALUES ('12345-678', 'Rua Principal', 100, 'Centro', 'Cidade Exemplo', 'SP');
+
+INSERT INTO usuario (nome, cpf, data_nascimento, telefone, id_endereco, tipo_usuario, senha)
+VALUES ('João Silva', '12345678900', '1980-01-01', '11999999999', 1, 'CLIENTE', 'senha123');
