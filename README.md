@@ -1,0 +1,1 @@
+Este é um projeto de Sistema de Gerenciamento Bancário desenvolvido em Java utilizando o padrão MVC (Model-View-Controller) e a biblioteca Swing para a interface gráfica. O sistema permite realizar operações de CRUD para gerenciar usuários, clientes, funcionários, contas bancárias e transações financeiras.
