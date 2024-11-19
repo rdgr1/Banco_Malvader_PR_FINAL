@@ -67,4 +67,13 @@ public class ContaDAO extends BaseDAO {
         }
         return null;
     }
+    public boolean encerrarConta(String numeroConta) throws SQLException {
+        String sql = "DELETE FROM conta WHERE numero = ?";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, numeroConta);
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0; // Retorna true se a conta foi encerrada
+        }
+    }
 }

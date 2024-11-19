@@ -1,4 +1,4 @@
-package org.swing.view;
+package org.swing.view.mainMenu.clienteMenu;
 
 import org.swing.controller.ClienteController;
 

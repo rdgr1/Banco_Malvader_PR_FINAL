@@ -1,9 +1,10 @@
-package org.swing.view;
+package org.swing.view.loginMenu;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import org.swing.controller.UsuarioController;
 import org.swing.model.Usuario;
 import org.swing.util.FontUtil;
+import org.swing.view.mainMenu.MainMenuView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,12 +37,26 @@ public class LoginView extends JFrame {
         mainPanel.setLayout(null);
         setContentPane(mainPanel);
 
+        // Label com o texto "Bem-vindo ao Sistema Bancário!"
+        // Fonte: SF Pro Display Regular (https://fonts.google.com/specimen/SF+Pro+Display)
+        // Tamanho: 15px
         // Título
-        JLabel lblTitulo = new JLabel("Bem-vindo ao Sistema Bancário!");
+        // Carrega o ícone da pasta de recursos (certifique-se de ter o arquivo "icon.png" em "/src/main/resources/icons/")
+        ImageIcon icon = new ImageIcon(getClass().getResource("/org/swing/assets/icons8-bank-48.png"));
+
+// Cria o JLabel com texto e ícone
+        JLabel lblTitulo = new JLabel("Bem-vindo ao Banco Malvader!", icon, SwingConstants.CENTER);
+
+// Estiliza o JLabel
+        lblTitulo.setFont(new Font("SF Pro Display Regular", Font.BOLD, 17));
         lblTitulo.setBounds(50, 20, 300, 30);
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setIconTextGap(10); // Espaçamento entre o texto e o ícone
+
+// Adiciona ao painel principal
         mainPanel.add(lblTitulo);
+
 
         // Campo "Usuário (CPF)"
         JLabel lblUsuario = new JLabel("Usuário (CPF):");
@@ -65,18 +80,20 @@ public class LoginView extends JFrame {
 
         // Botão "Entrar"
         JButton btnEntrar = new JButton("Entrar");
+        btnEntrar.setFont(new Font("SF Pro Display Regular", Font.BOLD, 15));
         btnEntrar.setBounds(150, 180, 100, 40);
-        btnEntrar.setBackground(new Color(0, 123, 255));
+        btnEntrar.setBackground(new Color(10, 137, 103));
         btnEntrar.setForeground(Color.WHITE);
-        btnEntrar.setFocusPainted(false);
+        btnEntrar.setFocusPainted(true);
         mainPanel.add(btnEntrar);
 
         // Botão "Sair"
         JButton btnSair = new JButton("Sair");
+        btnSair.setFont(new Font("SF Pro Display Regular", Font.BOLD, 15));
         btnSair.setBounds(260, 180, 100, 40);
-        btnSair.setBackground(Color.RED);
+        btnSair.setBackground(new Color(12, 81, 73));
         btnSair.setForeground(Color.WHITE);
-        btnSair.setFocusPainted(false);
+        btnSair.setFocusPainted(true);
         mainPanel.add(btnSair);
 
         // Ação do botão "Entrar"
@@ -109,7 +126,7 @@ public class LoginView extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new LoginView().setVisible(true));
+        SwingUtilities.invokeLater(() -> new MainMenuView().setVisible(true));
     }
 
     // Painel com gradiente
@@ -120,7 +137,7 @@ public class LoginView extends JFrame {
             Graphics2D g2d = (Graphics2D) g;
             int width = getWidth();
             int height = getHeight();
-            GradientPaint gradient = new GradientPaint(0, 0, new Color(32, 64, 128), 0, height, new Color(128, 128, 255));
+            GradientPaint gradient = new GradientPaint(0, 0, new Color(7, 249, 162), 0, height, new Color(13, 25, 43));
             g2d.setPaint(gradient);
             g2d.fillRect(0, 0, width, height);
         }

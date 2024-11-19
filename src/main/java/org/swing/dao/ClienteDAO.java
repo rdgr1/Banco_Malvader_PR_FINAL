@@ -9,15 +9,11 @@ import java.sql.*;
 public class ClienteDAO extends BaseDAO {
 
     public void save(Cliente cliente) throws SQLException {
-        String sql = "INSERT INTO cliente (id_usuario, senha) VALUES (?, ?)";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        String sql = "INSERT INTO cliente (id_usuario) VALUES (?)";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, cliente.getId_usuario());
-            stmt.setString(2, cliente.getSenha());
             stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                cliente.setId_usuario(rs.getInt(1));
-            }
         }
     }
 
@@ -72,5 +68,41 @@ public class ClienteDAO extends BaseDAO {
             }
         }
         return null;
+    }
+    public Cliente findByCpf(String cpf) throws SQLException {
+        String sql = """
+                     SELECT u.*, e.cep, e.local, e.numero_casa, e.bairro, e.cidade, e.estado
+                     FROM usuario u
+                     JOIN cliente c ON u.id_usuario = c.id_usuario
+                     LEFT JOIN endereco e ON u.id_endereco = e.id_endereco
+                     WHERE u.cpf = ?""";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Endereco endereco = new Endereco(
+                        rs.getInt("id_endereco"),
+                        rs.getString("cep"),
+                        rs.getString("local"),
+                        rs.getInt("numero_casa"),
+                        rs.getString("bairro"),
+                        rs.getString("cidade"),
+                        rs.getString("estado")
+                );
+
+                return new Cliente(
+                        rs.getInt("id_usuario"),
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getDate("data_nascimento").toLocalDate(),
+                        rs.getString("telefone"),
+                        endereco,
+                        rs.getString("senha")
+                );
+            }
+        }
+        return null; // Retorna null se o cliente não for encontrado
     }
 }

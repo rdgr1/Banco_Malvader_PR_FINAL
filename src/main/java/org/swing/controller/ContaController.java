@@ -45,7 +45,9 @@ public class ContaController implements IController<Conta>{
             return null;
         }
     }
-
+    public boolean encerrarConta(String numeroConta) throws SQLException {
+        return contaDAO.encerrarConta(numeroConta);
+    }
     @Override
     public List<Conta> listarTodos() {
         return List.of();

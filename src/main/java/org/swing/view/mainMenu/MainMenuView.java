@@ -1,8 +1,9 @@
-package org.swing.view;
+package org.swing.view.mainMenu;
 
 import org.swing.controller.ClienteController;
 import org.swing.controller.FuncionarioController;
-import org.swing.dao.FuncionarioDAO;
+import org.swing.view.mainMenu.clienteMenu.ClienteMenuView;
+import org.swing.view.mainMenu.funcionarioMenu.FuncionarioMenuView;
 
 import javax.swing.*;
 
@@ -11,7 +12,7 @@ public class MainMenuView extends JFrame {
     private ClienteController client;
     public MainMenuView() {
         setTitle("Menu Principal");
-        setSize(400, 300);
+        setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
     
@@ -19,8 +20,7 @@ public class MainMenuView extends JFrame {
         button1.setBounds(100, 100, 100, 30);
         add(button1);
         button1.addActionListener(e -> {
-            fun = new FuncionarioController(new FuncionarioDAO()); // Pass the required FuncionarioDAO instance
-            new FuncionarioMenuView(fun).setVisible(true);
+            new FuncionarioMenuView().setVisible(true);
         });
     
         JButton button2 = new JButton("Cliente");
