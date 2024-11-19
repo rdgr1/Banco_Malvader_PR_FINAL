@@ -1,6 +1,7 @@
-package org.swing.view;
+package org.swing.view.mainMenu.funcionarioMenu.cadastroFunc;
 
 import org.swing.controller.FuncionarioController;
+import org.swing.dao.FuncionarioDAO;
 import org.swing.model.Endereco;
 import org.swing.model.Funcionario;
 
@@ -8,10 +9,9 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class CadastroFuncionarioView extends JFrame {
+public class CadastrarFuncionarioView extends JFrame {
     private final FuncionarioController funcionarioController;
-
-    public CadastroFuncionarioView() {
+    public CadastrarFuncionarioView() {
         this.funcionarioController = new FuncionarioController();
 
         setTitle("Cadastro de Funcionários");
@@ -130,17 +130,11 @@ public class CadastroFuncionarioView extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao cadastrar o funcionário!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro no banco de dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
 
         btnCancelar.addActionListener(e -> dispose());
-    }
-
-    public static void main(String[] args) {
-        new CadastroFuncionarioView().setVisible(true);
     }
 }

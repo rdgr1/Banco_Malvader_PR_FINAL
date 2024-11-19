@@ -14,13 +14,14 @@ public class TransacaoController implements IController<Transacao> {
     }
 
     @Override
-    public void salvar(Transacao transacao) {
+    public boolean salvar(Transacao transacao) {
         try {
             transacaoDAO.save(transacao);
             System.out.println("Transação registrada com sucesso!");
         } catch (SQLException e) {
             System.err.println("Erro ao registrar a transação: " + e.getMessage());
         }
+        return false;
     }
 
     @Override

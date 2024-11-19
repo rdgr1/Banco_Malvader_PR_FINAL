@@ -10,12 +10,13 @@ public class ContaController implements IController<Conta>{
     private ContaDAO contaDAO;
 
     @Override
-    public void salvar(Conta conta) {
+    public boolean salvar(Conta conta) {
         try{
             contaDAO.save(conta);
         } catch (SQLException e) {
             System.err.println("Erro ao salvar Conta" + e.getMessage());
         }
+        return false;
     }
 
     @Override
@@ -51,5 +52,32 @@ public class ContaController implements IController<Conta>{
     @Override
     public List<Conta> listarTodos() {
         return List.of();
+    }
+
+    public boolean atualizar(String numeroConta, double limite, String vencimento) {
+        return false;
+    }
+
+    public Conta buscarPorNumero(String numeroConta) {
+        return null;
+    }
+    public double consultarSaldo(String numeroConta, String senha) throws SQLException {
+        return contaDAO.consultarSaldo(numeroConta, senha);
+    }
+
+    public void depositar(String numeroConta, double valor) throws SQLException {
+        contaDAO.depositar(numeroConta, valor);
+    }
+
+    public boolean sacar(String numeroConta, String senha, double valor) throws SQLException {
+        return contaDAO.sacar(numeroConta, senha, valor);
+    }
+
+    public boolean gerarExtrato(String numeroConta, String senha) throws SQLException {
+        return contaDAO.gerarExtrato(numeroConta, senha);
+    }
+
+    public double consultarLimite(String numeroConta, String senha) throws SQLException {
+        return contaDAO.consultarLimite(numeroConta, senha);
     }
 }

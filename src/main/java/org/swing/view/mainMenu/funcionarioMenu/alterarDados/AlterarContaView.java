@@ -71,8 +71,6 @@ public class AlterarContaView extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao alterar a conta. Verifique os dados informados.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro no banco de dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Valor do limite inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
             }

@@ -105,4 +105,19 @@ public class ClienteDAO extends BaseDAO {
         }
         return null; // Retorna null se o cliente não for encontrado
     }
+    public boolean atualizarCliente(String cpf, String telefone, String endereco) throws SQLException {
+        String sql = "UPDATE usuario u " +
+                "INNER JOIN cliente c ON u.id_usuario = c.id_usuario " +
+                "SET u.telefone = ?, u.endereco_completo = ? " +
+                "WHERE u.cpf = ?";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, telefone);
+            stmt.setString(2, endereco);
+            stmt.setString(3, cpf);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0; // Retorna true se a atualização foi realizada
+        }
+    }
 }

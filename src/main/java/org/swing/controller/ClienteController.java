@@ -15,13 +15,14 @@ public class ClienteController implements IController<Cliente>{
     }
 
     @Override
-    public void salvar(Cliente cliente) {
+    public boolean salvar(Cliente cliente) {
         try {
             usuarioDAO.save(cliente);
             clienteDAO.save(cliente);
         } catch (SQLException e) {
             System.err.println("Erro ao salvar cliente" + e.getMessage());
         }
+        return false;
     }
 
     @Override
@@ -62,5 +63,8 @@ public class ClienteController implements IController<Cliente>{
     @Override
     public List<Cliente> listarTodos() {
         return List.of();
+    }
+    public boolean atualizarCliente(String cpf, String telefone, String endereco) throws SQLException {
+        return clienteDAO.atualizarCliente(cpf, telefone, endereco);
     }
 }

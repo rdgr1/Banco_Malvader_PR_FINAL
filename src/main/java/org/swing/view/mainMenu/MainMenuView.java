@@ -2,7 +2,7 @@ package org.swing.view.mainMenu;
 
 import org.swing.controller.ClienteController;
 import org.swing.controller.FuncionarioController;
-import org.swing.view.mainMenu.clienteMenu.ClienteMenuView;
+import org.swing.view.mainMenu.clienteMenu.MenuClienteView;
 import org.swing.view.mainMenu.funcionarioMenu.FuncionarioMenuView;
 
 import javax.swing.*;
@@ -28,7 +28,7 @@ public class MainMenuView extends JFrame {
         add(button2);
         button2.addActionListener(e -> {
             client = new ClienteController(); // Assuming ClienteController does not require parameters
-            new ClienteMenuView(client).setVisible(true);
+            new MenuClienteView().setVisible(true);
         });
     
         JButton button3 = new JButton("Sair");

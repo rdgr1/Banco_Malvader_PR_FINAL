@@ -62,18 +62,8 @@ public class AlterarClienteView extends JFrame {
                 JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            try {
-                boolean sucesso = clienteController.atualizar(new Cliente(cpf, telefone, endereco));
-                if (sucesso) {
-                    JOptionPane.showMessageDialog(this, "Cliente alterado com sucesso!");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro ao alterar o cliente. Verifique os dados informados.", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro no banco de dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
         });
 
         btnCancelar.addActionListener(e -> dispose());
     }
+}

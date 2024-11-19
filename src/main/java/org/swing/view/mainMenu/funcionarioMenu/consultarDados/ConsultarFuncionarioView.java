@@ -46,21 +46,17 @@ public class ConsultarFuncionarioView extends JFrame {
                 return;
             }
 
-            try {
-                Funcionario funcionario = funcionarioController.buscarPorCodigo(codigo);
-                if (funcionario != null) {
-                    textArea.setText("Código: " + funcionario.getCodigo() + "\n" +
-                            "Cargo: " + funcionario.getCargo() + "\n" +
-                            "Nome: " + funcionario.getNome() + "\n" +
-                            "CPF: " + funcionario.getCpf() + "\n" +
-                            "Data de Nascimento: " + funcionario.getData_nascimento() + "\n" +
-                            "Telefone: " + funcionario.getTelefone() + "\n" +
-                            "Endereço: " + funcionario.getEndereco());
-                } else {
-                    JOptionPane.showMessageDialog(this, "Funcionário não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro ao consultar o funcionário: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            Funcionario funcionario = funcionarioController.buscarPorCodigo(codigo);
+            if (funcionario != null) {
+                textArea.setText("Código: " + funcionario.getCodigo() + "\n" +
+                        "Cargo: " + funcionario.getCargo() + "\n" +
+                        "Nome: " + funcionario.getNome() + "\n" +
+                        "CPF: " + funcionario.getCpf() + "\n" +
+                        "Data de Nascimento: " + funcionario.getData_nascimento() + "\n" +
+                        "Telefone: " + funcionario.getTelefone() + "\n" +
+                        "Endereço: " + funcionario.getEndereco());
+            } else {
+                JOptionPane.showMessageDialog(this, "Funcionário não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
     }

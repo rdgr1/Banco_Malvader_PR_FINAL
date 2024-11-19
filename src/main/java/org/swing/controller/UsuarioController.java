@@ -15,13 +15,14 @@ public class UsuarioController implements IController<Usuario> {
     }
 
     @Override
-    public void salvar(Usuario usuario) {
+    public boolean salvar(Usuario usuario) {
         try {
             usuarioDAO.save(usuario);
             System.out.println("Usuário salvo com sucesso!");
         } catch (SQLException e) {
             System.err.println("Erro ao salvar o usuário: " + e.getMessage());
         }
+        return false;
     }
 
     @Override

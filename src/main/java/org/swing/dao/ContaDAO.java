@@ -76,4 +76,68 @@ public class ContaDAO extends BaseDAO {
             return rowsAffected > 0; // Retorna true se a conta foi encerrada
         }
     }
+    public double consultarSaldo(String numeroConta, String senha) throws SQLException {
+        String sql = "SELECT saldo FROM conta INNER JOIN usuario ON conta.id_cliente = usuario.id_usuario " +
+                "WHERE conta.numero = ? AND usuario.senha = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, numeroConta);
+            stmt.setString(2, senha);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("saldo");
+            }
+        }
+        throw new SQLException("Conta ou senha inválida.");
+    }
+
+    public void depositar(String numeroConta, double valor) throws SQLException {
+        String sql = "UPDATE conta SET saldo = saldo + ? WHERE numero = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setDouble(1, valor);
+            stmt.setString(2, numeroConta);
+            stmt.executeUpdate();
+        }
+    }
+
+    public boolean sacar(String numeroConta, String senha, double valor) throws SQLException {
+        String sqlSaldo = "SELECT saldo FROM conta INNER JOIN usuario ON conta.id_cliente = usuario.id_usuario " +
+                "WHERE conta.numero = ? AND usuario.senha = ?";
+        String sqlSaque = "UPDATE conta SET saldo = saldo - ? WHERE numero = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmtSaldo = conn.prepareStatement(sqlSaldo);
+             PreparedStatement stmtSaque = conn.prepareStatement(sqlSaque)) {
+
+            stmtSaldo.setString(1, numeroConta);
+            stmtSaldo.setString(2, senha);
+            ResultSet rs = stmtSaldo.executeQuery();
+
+            if (rs.next() && rs.getDouble("saldo") >= valor) {
+                stmtSaque.setDouble(1, valor);
+                stmtSaque.setString(2, numeroConta);
+                stmtSaque.executeUpdate();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean gerarExtrato(String numeroConta, String senha) throws SQLException {
+        return true; // Implemente aqui a lógica para Excel.
+    }
+
+    public double consultarLimite(String numeroConta, String senha) throws SQLException {
+        String sql = "SELECT limite FROM conta_corrente INNER JOIN conta ON conta_corrente.id_conta = conta.id_conta " +
+                "INNER JOIN usuario ON conta.id_cliente = usuario.id_usuario " +
+                "WHERE conta.numero = ? AND usuario.senha = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, numeroConta);
+            stmt.setString(2, senha);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("limite");
+            }
+        }
+        throw new SQLException("Conta ou senha inválida.");
+    }
 }

@@ -3,6 +3,7 @@ package org.swing.controller;
 import org.swing.dao.RelatorioDAO;
 import org.swing.model.Relatorio;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,13 +15,14 @@ public class RelatorioController implements IController<Relatorio> {
     }
 
     @Override
-    public void salvar(Relatorio relatorio) {
+    public boolean salvar(Relatorio relatorio) {
         try {
             relatorioDAO.save(relatorio);
             System.out.println("Relatório gerado com sucesso!");
         } catch (SQLException e) {
             System.err.println("Erro ao gerar o relatório: " + e.getMessage());
         }
+        return false;
     }
 
     @Override
@@ -66,5 +68,12 @@ public class RelatorioController implements IController<Relatorio> {
             System.err.println("Erro ao listar relatórios do funcionário: " + e.getMessage());
             return null;
         }
+    }
+    public boolean validarSenhaFuncionario(String senha) throws SQLException {
+        return relatorioDAO.validarSenhaFuncionario(senha);
+    }
+
+    public boolean gerarRelatorioGeral() throws SQLException, IOException {
+        return relatorioDAO.gerarRelatorioGeral();
     }
 }

@@ -126,7 +126,7 @@ public class LoginView extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MainMenuView().setVisible(true));
+        SwingUtilities.invokeLater(() -> new LoginView().setVisible(true));
     }
 
     // Painel com gradiente

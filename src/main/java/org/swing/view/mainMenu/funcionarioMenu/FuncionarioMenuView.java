@@ -4,7 +4,9 @@ package org.swing.view.mainMenu.funcionarioMenu;
 import org.swing.view.mainMenu.funcionarioMenu.abrirConta.AberturaContaView;
 import org.swing.view.mainMenu.funcionarioMenu.alterarDados.AlteracaoDadosView;
 import org.swing.view.mainMenu.funcionarioMenu.cadastroFunc.CadastrarFuncionarioView;
+import org.swing.view.mainMenu.funcionarioMenu.consultarDados.ConsultaDadosView;
 import org.swing.view.mainMenu.funcionarioMenu.encerrarConta.EncerramentoContaView;
+import org.swing.view.mainMenu.funcionarioMenu.gerarRelatorio.GeracaoRelatorioView;
 
 import javax.swing.*;
 
@@ -29,6 +31,7 @@ public class FuncionarioMenuView extends JFrame {
         JButton botaoConsultarDados = new JButton("Consultar Dados");
         botaoConsultarDados.setBounds(100,200,100,30);
         add(botaoConsultarDados);
+        botaoConsultarDados.addActionListener(e -> new ConsultaDadosView().setVisible(true));
         JButton botaoAlterarDados = new JButton("Alterar dados");
         botaoAlterarDados.setBounds(100,250,100,30);
         add(botaoAlterarDados);
@@ -41,10 +44,10 @@ public class FuncionarioMenuView extends JFrame {
         JButton botaoGerarRelatorio = new JButton("Gerar Relatorio");
         botaoGerarRelatorio.setBounds(100,350,100,30);
         add(botaoGerarRelatorio);
-
+        botaoGerarRelatorio.addActionListener( e -> new GeracaoRelatorioView().setVisible(true));
         JButton botaoSair = new JButton("Sair");
         botaoSair.setBounds(100,400,100,30);
         add(botaoSair);
-        botaoSair.addActionListener(e -> { System.exit(0);});
+        botaoSair.addActionListener(e -> dispose());
     }
 }

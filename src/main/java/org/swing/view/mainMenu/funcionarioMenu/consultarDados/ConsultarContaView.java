@@ -2,6 +2,7 @@ package org.swing.view.mainMenu.funcionarioMenu.consultarDados;
 
 import org.swing.controller.ContaController;
 import org.swing.model.Conta;
+import org.swing.model.ContaCorrente;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -46,20 +47,16 @@ public class ConsultarContaView extends JFrame {
                 return;
             }
 
-            try {
-                Conta conta = contaController.buscarPorNumero(numeroConta);
-                if (conta != null) {
-                    textArea.setText("Tipo de Conta: " + conta.getTipo_conta() + "\n" +
-                            "Nome: " + conta.getCliente().getNome() + "\n" +
-                            "CPF: " + conta.getCliente().getCpf() + "\n" +
-                            "Saldo: " + conta.getSaldo() + "\n" +
-                            "Limite Disponível: " + (conta instanceof ContaCorrente ? ((ContaCorrente) conta).getLimite() : "N/A") + "\n" +
-                            "Data de Vencimento: " + (conta instanceof ContaCorrente ? ((ContaCorrente) conta).getDataVencimento() : "N/A"));
-                } else {
-                    JOptionPane.showMessageDialog(this, "Conta não encontrada!", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro ao consultar a conta: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            Conta conta = contaController.buscarPorNumero(numeroConta);
+            if (conta != null) {
+                textArea.setText("Tipo de Conta: " + conta.getTipo_conta() + "\n" +
+                        "Nome: " + conta.getCliente().getNome() + "\n" +
+                        "CPF: " + conta.getCliente().getCpf() + "\n" +
+                        "Saldo: " + conta.getSaldo() + "\n" +
+                        "Limite Disponível: " + (conta instanceof ContaCorrente ? ((ContaCorrente) conta).getLimite() : "N/A") + "\n" +
+                        "Data de Vencimento: " + (conta instanceof ContaCorrente ? ((ContaCorrente) conta).getDataVencimento() : "N/A"));
+            } else {
+                JOptionPane.showMessageDialog(this, "Conta não encontrada!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
     }

@@ -1,7 +1,6 @@
 package org.swing.view.mainMenu.funcionarioMenu.alterarDados;
 
 import org.swing.controller.FuncionarioController;
-import org.swing.dao.FuncionarioDAO;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -73,15 +72,11 @@ public class AlterarFuncionarioView extends JFrame {
                 return;
             }
 
-            try {
-                boolean sucesso = funcionarioController.atualizar(codigo, cargo, telefone, endereco);
-                if (sucesso) {
-                    JOptionPane.showMessageDialog(this, "Funcionário alterado com sucesso!");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro ao alterar o funcionário. Verifique os dados informados.", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro no banco de dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            boolean sucesso = funcionarioController.atualizar(codigo, cargo, telefone, endereco);
+            if (sucesso) {
+                JOptionPane.showMessageDialog(this, "Funcionário alterado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao alterar o funcionário. Verifique os dados informados.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
 

@@ -9,16 +9,17 @@ import java.util.List;
 public class FuncionarioController implements IController<Funcionario>{
     private FuncionarioDAO funcionarioDAO;
 
-    public FuncionarioController(FuncionarioDAO funcionarioDAO) {
-        this.funcionarioDAO = funcionarioDAO;
+    public FuncionarioController() {
+        this.funcionarioDAO = new FuncionarioDAO();
     }
 
     @Override
-    public void salvar(Funcionario funcionario) {
+    public boolean salvar(Funcionario funcionario) {
     try {funcionarioDAO.save(funcionario);
     }catch(SQLException e){
         System.err.println("Erro ao salvar Funcionario: " + e.getMessage());
         }
+        return false;
     }
 
     @Override
@@ -51,5 +52,14 @@ public class FuncionarioController implements IController<Funcionario>{
     @Override
     public List<Funcionario> listarTodos() {
         return List.of();
+    }
+
+    public boolean atualizar(String codigo, String cargo, String telefone, String endereco) {
+
+        return false;
+    }
+
+    public Funcionario buscarPorCodigo(String codigo) {
+        return null;
     }
 }
