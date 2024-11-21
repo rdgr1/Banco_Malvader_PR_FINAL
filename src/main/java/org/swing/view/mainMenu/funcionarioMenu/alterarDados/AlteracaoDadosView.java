@@ -15,6 +15,7 @@ public class AlteracaoDadosView extends JFrame {
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        setLocationRelativeTo(null);
 
         JLabel lblTitulo = new JLabel("Alteração de Dados");
         lblTitulo.setBounds(150, 10, 200, 30);
@@ -43,7 +44,6 @@ public class AlteracaoDadosView extends JFrame {
         btnAlterarCliente.addActionListener(e -> new AlterarClienteView().setVisible(true));
         btnVoltar.addActionListener(e -> {
             dispose();
-            new MainMenuView().setVisible(true); // Volta ao menu principal
         });
     }
 }

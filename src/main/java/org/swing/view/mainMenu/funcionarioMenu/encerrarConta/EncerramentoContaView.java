@@ -13,6 +13,8 @@ public class EncerramentoContaView extends JFrame {
     public EncerramentoContaView() {
         SwingStyleUtil.applyGlobalStyles();
         setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
+
         this.contaController = new ContaController();
 
         setTitle("Encerramento de Conta");

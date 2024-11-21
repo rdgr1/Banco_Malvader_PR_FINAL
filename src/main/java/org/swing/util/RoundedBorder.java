@@ -7,7 +7,7 @@ public class RoundedBorder extends LineBorder {
     private final int radius;
 
     public RoundedBorder(int radius) {
-        super(new Color(46, 202, 226), 1, true);
+        super(new Color(46, 202, 226), 2, true);
         this.radius = radius;
     }
 

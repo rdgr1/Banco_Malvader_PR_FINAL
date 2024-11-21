@@ -12,6 +12,8 @@ public class AlterarFuncionarioView extends JFrame {
     public AlterarFuncionarioView() {
         SwingStyleUtil.applyGlobalStyles();
         setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
+
         this.funcionarioController = new FuncionarioController();
 
 

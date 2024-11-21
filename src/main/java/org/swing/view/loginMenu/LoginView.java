@@ -41,7 +41,7 @@ public class LoginView extends JFrame {
 
 // Cria o JLabel com texto e ícone
         JLabel lblTitulo = new JLabel("Bem-vindo ao Banco Malvader!", icon, SwingConstants.CENTER);
-        lblTitulo.setForeground(new Color(46, 202, 226));
+        lblTitulo.setForeground(Color.WHITE);
 // Estiliza o JLabel
         lblTitulo.setFont(new Font("SF Pro Display Regular", Font.BOLD, 17));
         lblTitulo.setBounds(50, 20, 300, 30);
@@ -50,7 +50,6 @@ public class LoginView extends JFrame {
 
 // Adiciona ao painel principal
         mainPanel.add(lblTitulo);
-
 
         // Campo "Usuário (CPF)"
         JLabel lblUsuario = new JLabel("Usuário (CPF):");
@@ -119,7 +118,7 @@ public class LoginView extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new LoginView().setVisible(true));
+        SwingUtilities.invokeLater(() -> new MainMenuView().setVisible(true));
     }
     }
 

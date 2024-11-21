@@ -13,6 +13,8 @@ public class AlterarClienteView extends JFrame {
     public AlterarClienteView() {
         SwingStyleUtil.applyGlobalStyles();
         setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
+
         this.clienteController = new ClienteController();
 
         setTitle("Alterar Cliente");

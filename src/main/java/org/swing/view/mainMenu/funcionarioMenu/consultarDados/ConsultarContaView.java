@@ -15,6 +15,8 @@ public class ConsultarContaView extends JFrame {
     public ConsultarContaView() {
         SwingStyleUtil.applyGlobalStyles();
         setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
+
         this.contaController = new ContaController();
 
         setTitle("Consultar Conta");

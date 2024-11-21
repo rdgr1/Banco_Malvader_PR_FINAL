@@ -53,9 +53,13 @@ public class FuncionarioMenuView extends JFrame {
         botaoGerarRelatorio.setBounds(centerX,350,200,30);
         add(botaoGerarRelatorio);
         botaoGerarRelatorio.addActionListener( e -> new GeracaoRelatorioView().setVisible(true));
+        JButton botaoEncerrar = new JButton("Voltar");
+        botaoEncerrar.setBounds(centerX+30,400,150,30);
+        add(botaoEncerrar);
+        botaoEncerrar.addActionListener(e -> dispose());
         JButton botaoSair = new JButton("Sair");
-        botaoSair.setBounds(centerX+50,400,100,30);
+        botaoSair.setBounds(centerX+50,450,100,30);
         add(botaoSair);
-        botaoSair.addActionListener(e -> dispose());
+        botaoSair.addActionListener(e -> System.exit(0));
     }
 }

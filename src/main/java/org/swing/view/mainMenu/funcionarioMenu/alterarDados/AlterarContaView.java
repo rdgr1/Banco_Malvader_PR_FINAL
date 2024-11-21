@@ -13,6 +13,8 @@ public class AlterarContaView extends JFrame {
     public AlterarContaView() {
         SwingStyleUtil.applyGlobalStyles();
         setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
+
         this.contaController = new ContaController();
 
         setTitle("Alterar Conta");

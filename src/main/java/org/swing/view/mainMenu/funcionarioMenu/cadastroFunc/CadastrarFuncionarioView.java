@@ -16,6 +16,8 @@ public class CadastrarFuncionarioView extends JFrame {
     public CadastrarFuncionarioView() {
         SwingStyleUtil.applyGlobalStyles();
         setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
+
         this.funcionarioController = new FuncionarioController();
 
         setTitle("Cadastro de Funcionários");

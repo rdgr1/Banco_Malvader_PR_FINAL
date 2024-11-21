@@ -14,6 +14,8 @@ public class ConsultarFuncionarioView extends JFrame {
     public ConsultarFuncionarioView() {
         SwingStyleUtil.applyGlobalStyles();
         setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
+
         this.funcionarioController = new FuncionarioController();
 
         setTitle("Consultar Funcionário");

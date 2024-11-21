@@ -15,6 +15,7 @@ public class ConsultaDadosView extends JFrame {
             setSize(500, 300);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setLayout(null);
+            setLocationRelativeTo(null);
 
             JLabel lblTitulo = new JLabel("Consulta de Dados");
             lblTitulo.setBounds(150, 10, 200, 30);
@@ -43,7 +44,6 @@ public class ConsultaDadosView extends JFrame {
             btnConsultarCliente.addActionListener(e -> new ConsultarClienteView().setVisible(true));
             btnVoltar.addActionListener(e -> {
                 dispose();
-                new MainMenuView().setVisible(true); // Volta ao menu principal
             });
         }
 }

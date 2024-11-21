@@ -20,6 +20,7 @@ public class ConsultarClienteView extends JFrame {
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
+        setLocationRelativeTo(null);
 
         JLabel lblTitulo = new JLabel("Consultar Cliente");
         lblTitulo.setBounds(150, 10, 200, 30);

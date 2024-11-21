@@ -27,7 +27,11 @@ public class SwingStyleUtil {
             }
             applyGlobalFont(customFont);
         }
-
+        UIManager.put("OptionPane.background",new Color(250, 250, 250));
+        UIManager.put("OptionPane.buttonForeground",new Color(0,0,0,0));
+        UIManager.put("Label.border",new RoundedBorder(20));
+        UIManager.put("Label.background", new Color(0,0,0,0));
+        UIManager.put("Label.foreground",new Color(46, 202, 226));
         UIManager.put("Button.background", new Color(0, 0, 0, 0)); // Fundo transparente
         UIManager.put("Button.foreground", new Color(46, 202, 226)); // Cor do texto
         UIManager.put("Button.border", new RoundedBorder(20)); // Borda arredondada
