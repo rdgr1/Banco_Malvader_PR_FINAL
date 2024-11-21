@@ -1,6 +1,8 @@
 package org.swing.view.mainMenu.funcionarioMenu.encerrarConta;
 
 import org.swing.controller.ContaController;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -9,6 +11,8 @@ public class EncerramentoContaView extends JFrame {
     private final ContaController contaController;
 
     public EncerramentoContaView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.contaController = new ContaController();
 
         setTitle("Encerramento de Conta");

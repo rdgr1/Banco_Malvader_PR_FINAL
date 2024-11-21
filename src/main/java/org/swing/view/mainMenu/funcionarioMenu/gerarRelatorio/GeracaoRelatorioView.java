@@ -1,6 +1,8 @@
 package org.swing.view.mainMenu.funcionarioMenu.gerarRelatorio;
 
 import org.swing.controller.RelatorioController;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -10,6 +12,8 @@ public class GeracaoRelatorioView extends JFrame {
     private final RelatorioController relatorioController;
 
     public GeracaoRelatorioView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.relatorioController = new RelatorioController();
 
         setTitle("Geração de Relatórios");

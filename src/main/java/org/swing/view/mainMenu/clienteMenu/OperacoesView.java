@@ -1,6 +1,8 @@
 package org.swing.view.mainMenu.clienteMenu;
 
 import org.swing.controller.ContaController;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -8,6 +10,9 @@ import java.sql.SQLException;
 public class OperacoesView extends JFrame {
     ContaController contaController;
     OperacoesView(){
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
         this.contaController = new ContaController();
         setTitle("Operaçẽos do Cliente");
         setSize(400, 400);

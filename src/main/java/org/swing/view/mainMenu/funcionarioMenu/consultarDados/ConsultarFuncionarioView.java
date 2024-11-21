@@ -2,6 +2,8 @@ package org.swing.view.mainMenu.funcionarioMenu.consultarDados;
 
 import org.swing.controller.FuncionarioController;
 import org.swing.model.Funcionario;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -10,6 +12,8 @@ public class ConsultarFuncionarioView extends JFrame {
     private final FuncionarioController funcionarioController;
 
     public ConsultarFuncionarioView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.funcionarioController = new FuncionarioController();
 
         setTitle("Consultar Funcionário");

@@ -3,6 +3,8 @@ package org.swing.view.mainMenu.funcionarioMenu.abrirConta;
 import org.swing.controller.ClienteController;
 import org.swing.controller.ContaController;
 import org.swing.model.*;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -13,11 +15,13 @@ public class AberturaContaView extends JFrame {
     private final ContaController contaController = new ContaController();
 
     public AberturaContaView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         setTitle("Abertura de Conta");
         setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-
+        setLocationRelativeTo(null);
         JLabel lblTitulo = new JLabel("Abertura de Conta Bancária");
         lblTitulo.setBounds(150, 10, 300, 30);
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);

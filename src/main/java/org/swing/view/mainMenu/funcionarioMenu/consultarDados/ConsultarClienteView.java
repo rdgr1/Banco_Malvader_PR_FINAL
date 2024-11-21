@@ -2,6 +2,8 @@ package org.swing.view.mainMenu.funcionarioMenu.consultarDados;
 
 import org.swing.controller.ClienteController;
 import org.swing.model.Cliente;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -10,6 +12,8 @@ public class ConsultarClienteView extends JFrame {
     private final ClienteController clienteController;
 
     public ConsultarClienteView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.clienteController = new ClienteController();
 
         setTitle("Consultar Cliente");

@@ -1,6 +1,8 @@
 package org.swing.view.mainMenu.funcionarioMenu.alterarDados;
 
 import org.swing.controller.FuncionarioController;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -8,6 +10,8 @@ import java.sql.SQLException;
 public class AlterarFuncionarioView extends JFrame {
     private final FuncionarioController funcionarioController;
     public AlterarFuncionarioView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.funcionarioController = new FuncionarioController();
 
 

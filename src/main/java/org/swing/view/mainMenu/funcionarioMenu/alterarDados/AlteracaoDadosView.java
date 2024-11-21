@@ -1,5 +1,7 @@
 package org.swing.view.mainMenu.funcionarioMenu.alterarDados;
 
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 import org.swing.view.mainMenu.MainMenuView;
 
 import javax.swing.*;
@@ -7,6 +9,8 @@ import javax.swing.*;
 public class AlteracaoDadosView extends JFrame {
 
     public AlteracaoDadosView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         setTitle("Alteração de Dados");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

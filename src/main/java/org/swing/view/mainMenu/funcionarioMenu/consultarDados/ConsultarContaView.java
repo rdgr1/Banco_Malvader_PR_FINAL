@@ -3,6 +3,8 @@ package org.swing.view.mainMenu.funcionarioMenu.consultarDados;
 import org.swing.controller.ContaController;
 import org.swing.model.Conta;
 import org.swing.model.ContaCorrente;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -11,6 +13,8 @@ public class ConsultarContaView extends JFrame {
     private final ContaController contaController;
 
     public ConsultarContaView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.contaController = new ContaController();
 
         setTitle("Consultar Conta");

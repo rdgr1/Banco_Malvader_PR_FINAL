@@ -4,6 +4,8 @@ import org.swing.controller.FuncionarioController;
 import org.swing.dao.FuncionarioDAO;
 import org.swing.model.Endereco;
 import org.swing.model.Funcionario;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -12,6 +14,8 @@ import java.time.LocalDate;
 public class CadastrarFuncionarioView extends JFrame {
     private final FuncionarioController funcionarioController;
     public CadastrarFuncionarioView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.funcionarioController = new FuncionarioController();
 
         setTitle("Cadastro de Funcionários");

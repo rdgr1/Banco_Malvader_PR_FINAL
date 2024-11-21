@@ -1,5 +1,7 @@
 package org.swing.view.mainMenu.funcionarioMenu.consultarDados;
 
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 import org.swing.view.mainMenu.MainMenuView;
 
 import javax.swing.*;
@@ -7,6 +9,8 @@ import javax.swing.*;
 public class ConsultaDadosView extends JFrame {
 
         public ConsultaDadosView() {
+            SwingStyleUtil.applyGlobalStyles();
+            setContentPane(new GradientPanel());
             setTitle("Consulta de Dados");
             setSize(500, 300);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,6 +1,8 @@
 package org.swing.view.mainMenu.clienteMenu;
 
 import org.swing.controller.ContaController;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 
@@ -14,6 +16,9 @@ public class MenuClienteView extends JFrame {
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
+        setLocationRelativeTo(null);
 
         JLabel lblTitulo = new JLabel("Menu do Cliente");
         lblTitulo.setBounds(100, 10, 200, 30);

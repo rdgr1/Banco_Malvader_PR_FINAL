@@ -1,6 +1,8 @@
 package org.swing.view.mainMenu.funcionarioMenu.alterarDados;
 import org.swing.controller.ClienteController;
 import org.swing.model.Cliente;
+import org.swing.util.GradientPanel;
+import org.swing.util.SwingStyleUtil;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -9,6 +11,8 @@ public class AlterarClienteView extends JFrame {
     private final ClienteController clienteController;
 
     public AlterarClienteView() {
+        SwingStyleUtil.applyGlobalStyles();
+        setContentPane(new GradientPanel());
         this.clienteController = new ClienteController();
 
         setTitle("Alterar Cliente");

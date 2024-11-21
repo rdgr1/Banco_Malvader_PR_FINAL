@@ -4,6 +4,9 @@ import com.formdev.flatlaf.FlatLightLaf;
 import org.swing.controller.UsuarioController;
 import org.swing.model.Usuario;
 import org.swing.util.FontUtil;
+import org.swing.util.GradientPanel;
+import org.swing.util.RoundedBorder;
+import org.swing.util.SwingStyleUtil;
 import org.swing.view.mainMenu.MainMenuView;
 
 import javax.swing.*;
@@ -15,15 +18,7 @@ public class LoginView extends JFrame {
     private UsuarioController usuarioController;
 
     public LoginView() {
-        // Configura o Look and Feel e Fonte Personalizada
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-            Font customFont = FontUtil.loadFont("/assets/SFPRODISPLAYREGULAR.OTF", 15f);
-            FontUtil.applyGlobalFont(customFont);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        SwingStyleUtil.applyGlobalStyles();
         usuarioController = new UsuarioController();
 
         // Configurações do Frame
@@ -46,12 +41,11 @@ public class LoginView extends JFrame {
 
 // Cria o JLabel com texto e ícone
         JLabel lblTitulo = new JLabel("Bem-vindo ao Banco Malvader!", icon, SwingConstants.CENTER);
-
+        lblTitulo.setForeground(new Color(46, 202, 226));
 // Estiliza o JLabel
         lblTitulo.setFont(new Font("SF Pro Display Regular", Font.BOLD, 17));
         lblTitulo.setBounds(50, 20, 300, 30);
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitulo.setForeground(Color.WHITE);
         lblTitulo.setIconTextGap(10); // Espaçamento entre o texto e o ícone
 
 // Adiciona ao painel principal
@@ -60,42 +54,41 @@ public class LoginView extends JFrame {
 
         // Campo "Usuário (CPF)"
         JLabel lblUsuario = new JLabel("Usuário (CPF):");
+        lblUsuario.setForeground(new Color(46, 202, 226));
         lblUsuario.setBounds(50, 70, 100, 30);
-        lblUsuario.setForeground(Color.WHITE);
         mainPanel.add(lblUsuario);
 
         JTextField txtUsuario = new JTextField();
-        txtUsuario.setBounds(150, 70, 200, 30);
+        txtUsuario.setBounds(170, 70, 200, 30);
+        txtUsuario.setBackground(new Color(0,0,0,0));
+        txtUsuario.setForeground(Color.WHITE);
+        txtUsuario.setBorder(new RoundedBorder(10));
         mainPanel.add(txtUsuario);
 
         // Campo "Senha"
-        JLabel lblSenha = new JLabel("Senha:");
+        JLabel lblSenha = new JLabel("Senha : ");
+        lblSenha.setForeground(new Color(46, 202, 226));
         lblSenha.setBounds(50, 120, 100, 30);
-        lblSenha.setForeground(Color.WHITE);
         mainPanel.add(lblSenha);
 
         JPasswordField txtSenha = new JPasswordField();
-        txtSenha.setBounds(150, 120, 200, 30);
+        txtSenha.setBounds(170, 120, 200, 30);
+        txtSenha.setBackground(new Color(0,0,0,0));
+        txtSenha.setForeground(Color.WHITE);
+        txtSenha.setBorder(new RoundedBorder(10));
         mainPanel.add(txtSenha);
 
         // Botão "Entrar"
         JButton btnEntrar = new JButton("Entrar");
         btnEntrar.setFont(new Font("SF Pro Display Regular", Font.BOLD, 15));
         btnEntrar.setBounds(150, 180, 100, 40);
-        btnEntrar.setBackground(new Color(10, 137, 103));
-        btnEntrar.setForeground(Color.WHITE);
-        btnEntrar.setFocusPainted(true);
         mainPanel.add(btnEntrar);
 
         // Botão "Sair"
         JButton btnSair = new JButton("Sair");
         btnSair.setFont(new Font("SF Pro Display Regular", Font.BOLD, 15));
         btnSair.setBounds(260, 180, 100, 40);
-        btnSair.setBackground(new Color(12, 81, 73));
-        btnSair.setForeground(Color.WHITE);
-        btnSair.setFocusPainted(true);
         mainPanel.add(btnSair);
-
         // Ação do botão "Entrar"
         btnEntrar.addActionListener(e -> {
             String cpf = txtUsuario.getText();
@@ -128,18 +121,5 @@ public class LoginView extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new LoginView().setVisible(true));
     }
-
-    // Painel com gradiente
-    static class GradientPanel extends JPanel {
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2d = (Graphics2D) g;
-            int width = getWidth();
-            int height = getHeight();
-            GradientPaint gradient = new GradientPaint(0, 0, new Color(7, 249, 162), 0, height, new Color(13, 25, 43));
-            g2d.setPaint(gradient);
-            g2d.fillRect(0, 0, width, height);
-        }
     }
-}
+
