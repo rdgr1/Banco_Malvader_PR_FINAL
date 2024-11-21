@@ -1,6 +1,8 @@
 package org.swing.controller;
 
+import org.swing.dao.ClienteDAO;
 import org.swing.dao.ContaDAO;
+import org.swing.model.Cliente;
 import org.swing.model.Conta;
 
 import java.sql.SQLException;
@@ -8,15 +10,26 @@ import java.util.List;
 
 public class ContaController implements IController<Conta>{
     private ContaDAO contaDAO;
+    private ClienteDAO clienteDAO;
+    public ContaController() {
+        this.contaDAO = new ContaDAO();
+        this.clienteDAO = new ClienteDAO();
+    }
 
     @Override
     public boolean salvar(Conta conta) {
-        try{
+        try {
+            Cliente clienteExistente = clienteDAO.findByCpf(conta.getCliente().getCpf());
+            if (clienteExistente == null) {
+                throw new SQLException("Cliente não encontrado. Por favor, crie o cliente antes de associar uma conta.");
+            }
+            conta.setCliente(clienteExistente); // Atualiza o cliente com o ID correto
             contaDAO.save(conta);
+            return true;
         } catch (SQLException e) {
-            System.err.println("Erro ao salvar Conta" + e.getMessage());
+            System.err.println("Erro ao salvar Conta: " + e.getMessage());
+            return false;
         }
-        return false;
     }
 
     @Override

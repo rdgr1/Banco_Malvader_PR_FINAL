@@ -7,6 +7,10 @@ import java.sql.*;
 public class ContaDAO extends BaseDAO {
 
     public void save(Conta conta) throws SQLException {
+        if (conta.getCliente() == null || conta.getCliente().getId_usuario() == 0) {
+            throw new SQLException("Cliente inválido. Certifique-se de que o cliente está salvo no banco de dados.");
+        }
+
         String sql = "INSERT INTO conta (numero, agencia, saldo, tipo_conta, id_cliente) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, conta.getNumero());

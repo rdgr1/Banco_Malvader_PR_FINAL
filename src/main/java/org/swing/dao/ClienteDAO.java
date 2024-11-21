@@ -9,13 +9,36 @@ import java.sql.*;
 public class ClienteDAO extends BaseDAO {
 
     public void save(Cliente cliente) throws SQLException {
-        String sql = "INSERT INTO cliente (id_usuario) VALUES (?)";
+        // Salva primeiro o usuário
+        String sqlUsuario = "INSERT INTO usuario (nome, cpf, data_nascimento, telefone, id_endereco, tipo_usuario, senha) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, cliente.getId_usuario());
-            stmt.executeUpdate();
+        try (Connection conn = getConnection(); PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS)) {
+            stmtUsuario.setString(1, cliente.getNome());
+            stmtUsuario.setString(2, cliente.getCpf());
+            stmtUsuario.setDate(3, Date.valueOf(cliente.getData_nascimento()));
+            stmtUsuario.setString(4, cliente.getTelefone());
+            stmtUsuario.setInt(5, cliente.getEndereco().getId_endereco());
+            stmtUsuario.setString(6, "CLIENTE"); // Define como CLIENTE
+            stmtUsuario.setString(7, cliente.getSenha());
+
+            stmtUsuario.executeUpdate();
+
+            // Recupera o ID gerado
+            ResultSet rs = stmtUsuario.getGeneratedKeys();
+            if (rs.next()) {
+                cliente.setId_usuario(rs.getInt(1));
+            }
+        }
+
+        // Salva o cliente
+        String sqlCliente = "INSERT INTO cliente (id_usuario) VALUES (?)";
+
+        try (Connection conn = getConnection(); PreparedStatement stmtCliente = conn.prepareStatement(sqlCliente)) {
+            stmtCliente.setInt(1, cliente.getId_usuario());
+            stmtCliente.executeUpdate();
         }
     }
+
 
     public void update(Cliente cliente) throws SQLException {
         String sql = "UPDATE cliente SET senha = ? WHERE id_usuario = ?";

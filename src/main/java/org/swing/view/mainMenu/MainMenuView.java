@@ -29,6 +29,8 @@ public class MainMenuView extends JFrame {
         JButton button1 = new JButton("Funcionario");
         button1.setBounds(centerX, 100, 200, 40);
         button1.setBackground(new Color(0,0,0,0));
+        button1.setFocusable(false);
+        button1.setFocusPainted(false);
         add(button1);
         button1.addActionListener(e -> {
             new FuncionarioMenuView().setVisible(true);
@@ -36,6 +38,8 @@ public class MainMenuView extends JFrame {
 
         JButton button2 = new JButton("Cliente");
         button2.setBounds(centerX, 150, 200, 40);
+        button2.setFocusable(false);
+        button2.setFocusPainted(false);
         add(button2);
         button2.addActionListener(e -> {
             client = new ClienteController(); // Assuming ClienteController does not require parameters
@@ -46,6 +50,8 @@ public class MainMenuView extends JFrame {
         button3.setBounds(centerX+50, 200, 100, 30);
         button3.setBackground(new Color(0,0,0,0));
         button3.setBorder(new RoundedBorder(20));
+        button3.setFocusable(false);
+        button3.setFocusPainted(false);
         add(button3);
         button3.addActionListener(e -> {
             System.exit(0);

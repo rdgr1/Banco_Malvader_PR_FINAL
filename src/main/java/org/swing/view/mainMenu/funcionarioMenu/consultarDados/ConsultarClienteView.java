@@ -51,19 +51,15 @@ public class ConsultarClienteView extends JFrame {
                 return;
             }
 
-            try {
-                Cliente cliente = clienteController.buscarPorCpf(cpf);
-                if (cliente != null) {
-                    textArea.setText("Nome: " + cliente.getNome() + "\n" +
-                            "CPF: " + cliente.getCpf() + "\n" +
-                            "Data de Nascimento: " + cliente.getData_nascimento() + "\n" +
-                            "Telefone: " + cliente.getTelefone() + "\n" +
-                            "Endereço: " + cliente.getEndereco());
-                } else {
-                    JOptionPane.showMessageDialog(this, "Cliente não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro ao consultar o cliente: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            Cliente cliente = clienteController.buscarPorCpf(cpf);
+            if (cliente != null) {
+                textArea.setText("Nome: " + cliente.getNome() + "\n" +
+                        "CPF: " + cliente.getCpf() + "\n" +
+                        "Data de Nascimento: " + cliente.getData_nascimento() + "\n" +
+                        "Telefone: " + cliente.getTelefone() + "\n" +
+                        "Endereço: " + cliente.getEndereco());
+            } else {
+                JOptionPane.showMessageDialog(this, "Cliente não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
     }

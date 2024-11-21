@@ -20,7 +20,7 @@ public class GeracaoRelatorioView extends JFrame {
         setSize(400, 250);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
-
+        setLocationRelativeTo(null);
         JLabel lblTitulo = new JLabel("Geração de Relatório Geral");
         lblTitulo.setBounds(80, 10, 250, 30);
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);

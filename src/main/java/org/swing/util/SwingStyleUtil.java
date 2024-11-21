@@ -27,7 +27,7 @@ public class SwingStyleUtil {
             }
             applyGlobalFont(customFont);
         }
-        UIManager.put("OptionPane.background",new Color(250, 250, 250));
+        UIManager.put("OptionPane.background",new Color(10, 25, 28));
         UIManager.put("OptionPane.buttonForeground",new Color(0,0,0,0));
         UIManager.put("Label.border",new RoundedBorder(20));
         UIManager.put("Label.background", new Color(0,0,0,0));
@@ -35,7 +35,8 @@ public class SwingStyleUtil {
         UIManager.put("Button.background", new Color(0, 0, 0, 0)); // Fundo transparente
         UIManager.put("Button.foreground", new Color(46, 202, 226)); // Cor do texto
         UIManager.put("Button.border", new RoundedBorder(20)); // Borda arredondada
-        UIManager.put("Button.focusPainted", false); // Remove a pintura do foco
+        UIManager.put("Button.focusPainted", false);// Remove a pintura do foco
+        UIManager.put("Button.focusable",false);
         UIManager.put("Button.contentAreaFilled", false); // Remove alteração visual ao pressionar
         UIManager.put("Button.opaque", true); // Mantém a opacidade
     }

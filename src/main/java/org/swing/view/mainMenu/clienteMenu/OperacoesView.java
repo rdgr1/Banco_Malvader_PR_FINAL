@@ -20,22 +20,33 @@ public class OperacoesView extends JFrame {
         setLayout(null);
         JButton btnSaldo = new JButton("Consultar Saldo");
         btnSaldo.setBounds(50, 50, 300, 30);
+        btnSaldo.setFocusPainted(false);
+        btnSaldo.setFocusable(false);
         add(btnSaldo);
-
+        btnSaldo.setFocusPainted(false);
+        btnSaldo.setFocusable(false);
         JButton btnDeposito = new JButton("Depósito");
         btnDeposito.setBounds(50, 90, 300, 30);
+        btnDeposito.setFocusPainted(false);
+        btnDeposito.setFocusable(false);
         add(btnDeposito);
 
         JButton btnSaque = new JButton("Saque");
         btnSaque.setBounds(50, 130, 300, 30);
+        btnSaque.setFocusPainted(false);
+        btnSaque.setFocusable(false);
         add(btnSaque);
 
         JButton btnExtrato = new JButton("Extrato");
         btnExtrato.setBounds(50, 170, 300, 30);
+        btnExtrato.setFocusPainted(false);
+        btnExtrato.setFocusable(false);
         add(btnExtrato);
 
         JButton btnLimite = new JButton("Consultar Limite");
         btnLimite.setBounds(50, 210, 300, 30);
+        btnLimite.setFocusPainted(false);
+        btnLimite.setFocusable(false);
         add(btnLimite);
         btnSaldo.addActionListener(e -> consultarSaldo());
         btnDeposito.addActionListener(e -> realizarDeposito());

@@ -1,6 +1,7 @@
 package org.swing.controller;
 
 import org.swing.dao.ClienteDAO;
+import org.swing.dao.EnderecoDAO;
 import org.swing.dao.UsuarioDAO;
 import org.swing.model.Cliente;
 
@@ -9,20 +10,38 @@ import java.util.List;
 
 public class ClienteController implements IController<Cliente>{
     private ClienteDAO clienteDAO;
-    private UsuarioDAO usuarioDAO;
+    private EnderecoDAO enderecoDAO;
     public ClienteController() {
         this.clienteDAO = new ClienteDAO();
+        this.enderecoDAO = new EnderecoDAO();
     }
 
-    @Override
     public boolean salvar(Cliente cliente) {
         try {
-            usuarioDAO.save(cliente);
+            if (cliente.getEndereco() != null && cliente.getEndereco().getId_endereco() == 0) {
+                enderecoDAO.save(cliente.getEndereco());
+            }
+
+            if (cliente.getSenha() == null || cliente.getSenha().isEmpty()) {
+                cliente.setSenha("senha123"); // Defina um valor padrão para a senha
+            }
+
             clienteDAO.save(cliente);
+            return true;
         } catch (SQLException e) {
-            System.err.println("Erro ao salvar cliente" + e.getMessage());
+            System.err.println("Erro ao salvar Cliente: " + e.getMessage());
+            return false;
         }
-        return false;
+    }
+
+
+    public Cliente buscarPorCpf(String cpf) {
+        try {
+            return clienteDAO.findByCpf(cpf);
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar Cliente por CPF: " + e.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -52,14 +71,6 @@ public class ClienteController implements IController<Cliente>{
             return null;
         }
     }
-    public Cliente buscarPorCpf(String cpf) throws SQLException {
-        try {
-            return clienteDAO.findByCpf(cpf);
-        } catch (SQLException e) {
-            System.err.println("Erro ao buscar cliente" + e.getMessage());
-            return null;
-        }
-    };
     @Override
     public List<Cliente> listarTodos() {
         return List.of();
